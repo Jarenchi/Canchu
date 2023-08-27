@@ -1,0 +1,38 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended", "airbnb", "airbnb-typescript"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["*.js"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "printWidth": 120
+      }
+    ],
+    "react/function-component-definition": "off",
+    "react/jsx-boolean-value": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-console": "off",
+    "no-alert": "off",
+    "import/no-extraneous-dependencies": "off",
+    "operator-linebreak": "off",
+    "object-curly-newline": "off",
+    "no-param-reassign": "off",
+    "quotes": ["error", "double"],
+    "linebreak-style": 0,
+    "@typescript-eslint/quotes": "off",
+    "arrow-body-style": "off",
+    "max-len": "off"
+  }
+}
