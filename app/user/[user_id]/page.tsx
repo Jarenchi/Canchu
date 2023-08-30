@@ -51,6 +51,7 @@ const Page: React.FC<PageProps> = ({ params }: { params: { user_id: string } }) 
   const [postChange, setPostChange] = useState(false);
   const [friendRequestChange, setFriendRequestChange] = useState(false);
   const [apiLoading, setApiLoading] = useState(true);
+  const [isAbleToEdit, setIsAbleToEdit] = useState(false);
   const fetchPostsData = usePosts(params.user_id, cursor);
   const fetchUserData = useUser(params.user_id);
   const getPostsData = async () => {
@@ -123,7 +124,11 @@ const Page: React.FC<PageProps> = ({ params }: { params: { user_id: string } }) 
     }
   };
   useInfiniteScroll(fetchNextPagePostsData, 100);
-  const isAbleToEdit = nookies.get().user_id === params.user_id;
+  useEffect(() => {
+    if (nookies.get().user_id === params.user_id) {
+      setIsAbleToEdit(true);
+    }
+  }, []);
   return (
     <>
       <Nav userPictureChange={userPictureChange} apiLoading={apiLoading} />
