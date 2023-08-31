@@ -104,10 +104,8 @@ const Page: React.FC<PageProps> = ({ params }: { params: { user_id: string } }) 
   }, [friendRequestChange]);
   const fetchNextPagePostsData = async () => {
     if (cursor === null) {
-      console.log("no posts!");
       return;
     }
-    console.log("get the posts!");
     console.log(cursor);
     try {
       const data = await fetchPostsData();
