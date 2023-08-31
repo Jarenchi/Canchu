@@ -87,10 +87,8 @@ const Page: React.FC = () => {
   }, []);
   const fetchNextPagePostsData = async () => {
     if (cursor === null) {
-      console.log("no posts!");
       return;
     }
-    console.log("get the posts!");
     console.log(cursor);
     try {
       const data = await fetchPostsData();
