@@ -49,7 +49,7 @@ function getRelativeTime(datetimeString: string) {
 interface Event {
   id: string;
   type: string;
-  is_read: number;
+  is_read: boolean;
   image: string | null;
   created_at: string;
   summary: string;
@@ -97,21 +97,23 @@ const NotificationPanel = () => {
   }
   const notificationsItems = notificationsData?.map((event: Event) => (
     <div
-      className={`relative flex border-b pt-2 bg-[#F6F6F6] dark:bg-neutral-600 ${event.is_read === 1 && "opacity-50"}`}
+      className={`relative flex border-b pt-2 bg-[#F6F6F6] dark:bg-neutral-600 ${
+        event.is_read === true && "opacity-50"
+      }`}
       key={event.id}
     >
       <div className="w-[80%] mb-2">
         <p className="font-medium font-outfit">{event.summary}</p>
         <p className="text-sm font-bold leading-6 text-berry-blue font-outfit">{getRelativeTime(event.created_at)}</p>
       </div>
-      {event.is_read !== 1 && (
+      {event.is_read !== true && (
         <button type="button" onClick={() => readEvent(event.id)} className="absolute right-5 top-5">
           <Image src={CheckCircle} alt="check-circle" width={12} height={12} />
         </button>
       )}
     </div>
   ));
-  const unreadCount = notificationsData.filter((event) => event.is_read === 0).length;
+  const unreadCount = notificationsData.filter((event) => event.is_read === false).length;
   return (
     <DropdownList className="relative cursor-pointer mr-3.5">
       <div className="relative">

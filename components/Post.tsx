@@ -233,7 +233,7 @@ const Post: React.FC<PostProps> = ({ post, setPostChange, setCommentChange, show
   return (
     <div
       key={post.id}
-      className="relative lg:max-w-[48.25rem] max-w-full rounded-xl bg-white dark:bg-neutral-600 border border-solid border-[#d3d3d38f] group"
+      className="relative lg:min-w-[48.25rem] max-w-full rounded-xl bg-white dark:bg-neutral-600 border border-solid border-[#d3d3d38f] group"
     >
       <div className="mx-8 mt-2 mb-4">
         {isAbleToEdit && (

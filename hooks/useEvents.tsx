@@ -8,7 +8,6 @@ const useEvents = () => {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events/`, {
         headers: { Authorization: `Bearer ${nookies.get().access_token}` },
       });
-      console.log(response.data.data.events);
       return response.data.data.events;
     } catch (error: any) {
       if (error?.response?.status >= 500 && error?.response?.status < 600) {
