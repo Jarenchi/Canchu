@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,11 +8,22 @@ import { useRouter } from "next/navigation";
 import Skeleton from "react-loading-skeleton";
 import useUser from "@/hooks/useFetchUser";
 import "react-loading-skeleton/dist/skeleton.css";
-import useUserData from "@/hooks/useUserData";
 import ProfileUser from "@/public/images/profile-user.png";
 import UserIcon from "@/public/images/user-icon.png";
 import ThemeSwitch from "./ThemeSwitch";
 
+interface UserData {
+  id: number;
+  name: string;
+  picture: string;
+  friend_count: number;
+  introduction: string;
+  tags: string;
+  friendship?: {
+    id: number;
+    status: string;
+  };
+}
 const DropdownList = styled.div`
   .clickarea {
     position: absolute;
@@ -34,7 +45,7 @@ interface ProfileDropdownListProps {
 const ProfileDropdownList: React.FC<ProfileDropdownListProps> = ({ userPictureChange, apiLoading }) => {
   const router = useRouter();
   const fetchUserData = useUser(nookies.get().user_id);
-  const { userData, setUserData } = useUserData();
+  const [userData, setUserData] = useState<UserData>();
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -64,7 +75,7 @@ const ProfileDropdownList: React.FC<ProfileDropdownListProps> = ({ userPictureCh
         <Skeleton circle width="2.375rem" height="2.375rem" />
       ) : (
         <>
-          {userData.picture ? (
+          {userData?.picture ? (
             <Link href={`/user/${nookies.get().user_id}`}>
               <div className="relative overflow-hidden cursor-pointer rounded-full w-[2.375rem] h-[2.375rem]">
                 <Image
@@ -76,7 +87,7 @@ const ProfileDropdownList: React.FC<ProfileDropdownListProps> = ({ userPictureCh
               </div>
             </Link>
           ) : (
-            <Image src={ProfileUser} alt={userData.name || "未知使用者"} width={38} height={38} />
+            <Image src={ProfileUser} alt={userData?.name || "未知使用者"} width={38} height={38} />
           )}
         </>
       )}
@@ -86,7 +97,7 @@ const ProfileDropdownList: React.FC<ProfileDropdownListProps> = ({ userPictureCh
             <div className="flex items-center">
               <Image src={UserIcon} alt="profile-user" width={38} height={38} />
               <span className="font-outfit font-bold break-words whitespace-pre-wrap text-white ml-[1rem] text-[1.3rem] leading-6">
-                {userData.name || "你的名字"}
+                {userData?.name || "你的名字"}
               </span>
             </div>
             <ThemeSwitch />
