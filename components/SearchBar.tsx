@@ -97,7 +97,7 @@ const SearchBar: React.FC = () => {
         onClick={handleInputClick}
       />
       {searchInputRef.current?.value && showSearchResults && (
-        <div className="rounded-[20px] bg-white absolute top-14 z-10 border max-h-[18.75rem] overflow-auto">
+        <div className="rounded-[20px] bg-white absolute top-14 left-0.5 z-10 border max-h-[18.75rem] overflow-auto">
           {userSearchItems}
         </div>
       )}
