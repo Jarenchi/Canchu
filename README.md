@@ -1,4 +1,4 @@
-# Canchu
+# Canchu (Frontend Project)
 
 Canchu is a social media website that includes the following features:
 
