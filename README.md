@@ -1,5 +1,7 @@
 # Canchu (Frontend Project)
 
+[Demo Video](https://www.youtube.com/watch?v=Cqy_XZkWV9E)
+
 Canchu is a social media website that includes the following features:
 
 - User authentication
